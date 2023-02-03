@@ -13,3 +13,15 @@ create-venv:
 
 pyenv:
 	curl https://pyenv.run | bash
+
+jt: 
+	python /home/kirill/.pyenv/versions/3.10/envs/famafrench-explore/bin/jt -l
+
+	# select theme
+	python /home/kirill/.pyenv/versions/3.10/envs/famafrench-explore/bin/jt -t jt -t monokai -f fira -fs 14 -cellw 100%
+
+	# todo fix themes
+	https://randlow.github.io/posts/finance-economics/pandas-datareader-KF/
+
+run:
+	pipenv run jupyter notebook
