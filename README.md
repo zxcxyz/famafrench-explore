@@ -1,4 +1,4 @@
-# famafrench-explore - [Website here](https://zxcxyz.github.io/famafrench-explore/intro.html) 
+# famafrench-explore - [Website here](https://zxcxyz.github.io/famafrench-explore/) 
 A way to visualize Fama-French portfolios historical returns
 
 
