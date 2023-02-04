@@ -1,6 +1,7 @@
 publish:
+	rm -rf _build/
 	jupyter-book build .
-	ghp-import -n -p -f _build/html
+	ghp-import -n -p -o -f -m "Update GitHub Pages" _build/html
 
 req:
 	python3 -m pip install -r requirements.txt

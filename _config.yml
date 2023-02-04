@@ -30,4 +30,4 @@ html:
   use_issues_button: true
   use_repository_button: true
 
-exclude_patterns: [_build, "**.ipynb_checkpoints", "data", "other", "README.md"]
+exclude_patterns: [_build, "**.ipynb_checkpoints", "data", "README.md"]
