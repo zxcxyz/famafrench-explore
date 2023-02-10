@@ -11,5 +11,6 @@ For plotting I use Bokeh, guide - https://docs.bokeh.org/en/latest/docs/first_st
 
 - try out jupyter themes https://github.com/dunovank/jupyter-themes
 - fetch data from website
-- add cumulative returns chart (to maybe estimate if now is a good time to use either strategy)
-- add more charts and stuff
+- for cumulative return chart, use annual returns Ken provided (instead of incorrectly calculating them myself)
+- for that ^, parse CSV into two parts - one with monthly returns, one with annual. Maybe use annual in all my charts??
+- add more charts and stuff(be creative)
