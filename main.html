@@ -1,0 +1,1081 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Plot Fama-French Portfolios returns &#8212; Fama-French returns data insights</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Fama-French returns data insights</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Plot Fama-French Portfolios returns
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/zxcxyz/famafrench-explore/gh-pages?urlpath=tree/main.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/zxcxyz/famafrench-explore"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/zxcxyz/famafrench-explore/issues/new?title=Issue%20on%20page%20%2Fmain.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/main.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Plot Fama-French Portfolios returns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-graph">
+   Interactive graph
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#annualized-returns">
+   Annualized returns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#last-10-years-cumulative-return-by-factor">
+   Last 10 Years Cumulative return by factor
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Plot Fama-French Portfolios returns</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Plot Fama-French Portfolios returns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-graph">
+   Interactive graph
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#annualized-returns">
+   Annualized returns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#last-10-years-cumulative-return-by-factor">
+   Last 10 Years Cumulative return by factor
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="plot-fama-french-portfolios-returns">
+<h1>Plot Fama-French Portfolios returns<a class="headerlink" href="#plot-fama-french-portfolios-returns" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="interactive-graph">
+<h1>Interactive graph<a class="headerlink" href="#interactive-graph" title="Permalink to this headline">#</a></h1>
+<p>BTW you can hide graph lines by clicking on their entries in the legend</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_notebook</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">HoverTool</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+<span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span>
+        <span class="n">tooltips</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;@time{</span><span class="si">%c</span><span class="s1">}&#39;</span><span class="p">),</span>
+            <span class="c1"># note the $ syntax here, compared to @ syntax ^ there. @time is a column name, $name and $y are vars inside Bokeh</span>
+            <span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;$name&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Returns&#39;</span><span class="p">,</span> <span class="s2">&quot;$y&quot;</span><span class="p">)</span>
+            <span class="p">],</span>
+        <span class="n">formatters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;@time&#39;</span><span class="p">:</span> <span class="s1">&#39;datetime&#39;</span><span class="p">})</span>
+
+<span class="c1"># prep data</span>
+<span class="n">dateparse</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span> 
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/F-F_Research_Data_Factors.CSV&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span> <span class="s1">&#39;SMB&#39;</span><span class="p">,</span> <span class="s1">&#39;HML&#39;</span><span class="p">,</span> <span class="s1">&#39;RF&#39;</span><span class="p">],</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">887</span><span class="p">,</span>
+                <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_parser</span><span class="o">=</span><span class="n">dateparse</span><span class="p">)</span>
+
+<span class="c1"># prep the data for Bokeh</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># used for displaying in jupyter</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+
+<span class="c1"># create a new plot and add data to it</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Fama-French Three-factor model&quot;</span><span class="p">,</span> <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Returns&#39;</span><span class="p">,</span> 
+<span class="n">x_axis_type</span><span class="o">=</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;xwheel_zoom&#39;</span><span class="p">,</span> <span class="n">hover</span><span class="p">],</span> <span class="n">active_scroll</span><span class="o">=</span><span class="s1">&#39;xwheel_zoom&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sizing_mode</span> <span class="o">=</span> <span class="s1">&#39;scale_width&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ygrid</span><span class="o">.</span><span class="n">grid_line_color</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="s1">&#39;maroon&#39;</span><span class="p">,</span> <span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span> <span class="s1">&#39;SMB&#39;</span><span class="p">,</span> <span class="s1">&#39;HML&#39;</span><span class="p">,</span> <span class="s1">&#39;RF&#39;</span><span class="p">]):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">line</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="n">line</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">line</span><span class="p">)</span>
+
+
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="s2">&quot;top_left&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">click_policy</span><span class="o">=</span><span class="s2">&quot;hide&quot;</span>
+
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+        .bk-notebook-logo {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAOkSURBVDiNjZRtaJVlGMd/1/08zzln5zjP1LWcU9N0NkN8m2CYjpgQYQXqSs0I84OLIC0hkEKoPtiH3gmKoiJDU7QpLgoLjLIQCpEsNJ1vqUOdO7ppbuec5+V+rj4ctwzd8IIbbi6u+8f1539dt3A78eXC7QizUF7gyV1fD1Yqg4JWz84yffhm0qkFqBogB9rM8tZdtwVsPUhWhGcFJngGeWrPzHm5oaMmkfEg1usvLFyc8jLRqDOMru7AyC8saQr7GG7f5fvDeH7Ej8CM66nIF+8yngt6HWaKh7k49Soy9nXurCi1o3qUbS3zWfrYeQDTB/Qj6kX6Ybhw4B+bOYoLKCC9H3Nu/leUTZ1JdRWkkn2ldcCamzrcf47KKXdAJllSlxAOkRgyHsGC/zRday5Qld9DyoM4/q/rUoy/CXh3jzOu3bHUVZeU+DEn8FInkPBFlu3+nW3Nw0mk6vCDiWg8CeJaxEwuHS3+z5RgY+YBR6V1Z1nxSOfoaPa4LASWxxdNp+VWTk7+4vzaou8v8PN+xo+KY2xsw6une2frhw05CTYOmQvsEhjhWjn0bmXPjpE1+kplmmkP3suftwTubK9Vq22qKmrBhpY4jvd5afdRA3wGjFAgcnTK2s4hY0/GPNIb0nErGMCRxWOOX64Z8RAC4oCXdklmEvcL8o0BfkNK4lUg9HTl+oPlQxdNo3Mg4Nv175e/1LDGzZen30MEjRUtmXSfiTVu1kK8W4txyV6BMKlbgk3lMwYCiusNy9fVfvvwMxv8Ynl6vxoByANLTWplvuj/nF9m2+PDtt1eiHPBr1oIfhCChQMBw6Aw0UulqTKZdfVvfG7VcfIqLG9bcldL/+pdWTLxLUy8Qq38heUIjh4XlzZxzQm19lLFlr8vdQ97rjZVOLf8nclzckbcD4wxXMidpX30sFd37Fv/GtwwhzhxGVAprjbg0gCAEeIgwCZyTV2Z1REEW8O4py0wsjeloKoMr6iCY6dP92H6Vw/oTyICIthibxjm/DfN9lVz8IqtqKYLUXfoKVMVQVVJOElGjrnnUt9T9wbgp8AyYKaGlqingHZU/uG2NTZSVqwHQTWkx9hxjkpWDaCg6Ckj5qebgBVbT3V3NNXMSiWSDdGV3hrtzla7J+duwPOToIg42ChPQOQjspnSlp1V+Gjdged7+8UN5CRAV7a5EdFNwCjEaBR27b3W890TE7g24NAP/mMDXRWrGoFPQI9ls/MWO2dWFAar/xcOIImbbpA3zgAAAABJRU5ErkJggg==);
+        }
+    </style>
+    <div>
+        <a href="https://bokeh.org" target="_blank" class="bk-notebook-logo"></a>
+        <span id="p1005">Loading BokehJS ...</span>
+    </div>
+</div><script type="application/javascript">(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  const force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+const JS_MIME_TYPE = 'application/javascript';
+  const HTML_MIME_TYPE = 'text/html';
+  const EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  const CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    const script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    const cell = handle.cell;
+
+    const id = cell.output_area._bokeh_element_id;
+    const server_id = cell.output_area._bokeh_server_id;
+    // Clean up Bokeh references
+    if (id != null && id in Bokeh.index) {
+      Bokeh.index[id].model.document.clear();
+      delete Bokeh.index[id];
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      const cmd_clean = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd_clean, {
+        iopub: {
+          output: function(msg) {
+            const id = msg.content.text.trim();
+            if (id in Bokeh.index) {
+              Bokeh.index[id].model.document.clear();
+              delete Bokeh.index[id];
+            }
+          }
+        }
+      });
+      // Destroy server and session
+      const cmd_destroy = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd_destroy);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    const output_area = handle.output_area;
+    const output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!Object.prototype.hasOwnProperty.call(output.data, EXEC_MIME_TYPE))) {
+      return
+    }
+
+    const toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      const bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      const script_attrs = bk_div.children[0].attributes;
+      for (let i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      const toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      const props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    const events = require('base/js/events');
+    const OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  const NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded() {
+    const el = document.getElementById("p1005");
+    if (el != null) {
+      el.textContent = "BokehJS is loading...";
+    }
+    if (root.Bokeh !== undefined) {
+      if (el != null) {
+        el.textContent = "BokehJS " + root.Bokeh.version + " successfully loaded.";
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(display_loaded, 100)
+    }
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error(url) {
+      console.error("failed to load " + url);
+    }
+
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.0.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.0.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.0.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.0.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.0.3.min.js"];
+  const css_urls = [];
+
+  const inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {
+    }
+  ];
+
+  function run_inline_js() {
+    if (root.Bokeh !== undefined || force === true) {
+          for (let i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      const cell = $(document.getElementById("p1005")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));</script><div class="output text_html">
+<div id="ff7fd88a-b665-4e00-afa0-312ab704a484" data-root-id="p1006" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"611cfeed-9b91-42f7-88b9-f8b036286f77":{"version":"3.0.3","title":"Bokeh Application","defs":[],"roots":[{"type":"object","name":"Figure","id":"p1006","attributes":{"sizing_mode":"scale_width","x_range":{"type":"object","name":"DataRange1d","id":"p1007"},"y_range":{"type":"object","name":"DataRange1d","id":"p1008"},"x_scale":{"type":"object","name":"LinearScale","id":"p1020"},"y_scale":{"type":"object","name":"LinearScale","id":"p1022"},"title":{"type":"object","name":"Title","id":"p1009","attributes":{"text":"Fama-French Three-factor model"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1084","attributes":{"name":"Mkt-RF","data_source":{"type":"object","name":"ColumnDataSource","id":"p1002","attributes":{"selected":{"type":"object","name":"Selection","id":"p1004","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1003"},"data":{"type":"map","entries":[["time",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[280],"dtype":"float64","order":"little"}],["Mkt-RF",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[280],"dtype":"float64","order":"little"}],["SMB",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[280],"dtype":"float64","order":"little"}],["HML",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[280],"dtype":"float64","order":"little"}],["RF",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[280],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1085","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1086"}}},"glyph":{"type":"object","name":"Line","id":"p1081","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"Mkt-RF"},"line_color":"royalblue"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1082","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"Mkt-RF"},"line_color":"royalblue","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1083","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"Mkt-RF"},"line_color":"royalblue","line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"p1131","attributes":{"name":"SMB","data_source":{"id":"p1002"},"view":{"type":"object","name":"CDSView","id":"p1132","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1133"}}},"glyph":{"type":"object","name":"Line","id":"p1128","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"SMB"},"line_color":"maroon"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1129","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"SMB"},"line_color":"maroon","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1130","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"SMB"},"line_color":"maroon","line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"p1180","attributes":{"name":"HML","data_source":{"id":"p1002"},"view":{"type":"object","name":"CDSView","id":"p1181","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1182"}}},"glyph":{"type":"object","name":"Line","id":"p1177","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"HML"},"line_color":"darkorange"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1178","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"HML"},"line_color":"darkorange","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1179","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"HML"},"line_color":"darkorange","line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"p1232","attributes":{"name":"RF","data_source":{"id":"p1002"},"view":{"type":"object","name":"CDSView","id":"p1233","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1234"}}},"glyph":{"type":"object","name":"Line","id":"p1229","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"RF"},"line_color":"magenta"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1230","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"RF"},"line_color":"magenta","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1231","attributes":{"x":{"type":"field","field":"time"},"y":{"type":"field","field":"RF"},"line_color":"magenta","line_alpha":0.2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1014","attributes":{"tools":[{"type":"object","name":"HoverTool","id":"p1001","attributes":{"renderers":"auto","tooltips":[["Time","@time{%c}"],["Name","$name"],["Returns","$y"]],"formatters":{"type":"map","entries":[["@time","datetime"]]}}},{"type":"object","name":"WheelZoomTool","id":"p1074","attributes":{"dimensions":"width"}}],"active_scroll":{"id":"p1074"}}},"left":[{"type":"object","name":"LinearAxis","id":"p1067","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1069","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1068"},"axis_label":"Returns","major_label_policy":{"type":"object","name":"AllLabels","id":"p1070"}}}],"below":[{"type":"object","name":"DatetimeAxis","id":"p1024","attributes":{"ticker":{"type":"object","name":"DatetimeTicker","id":"p1026","attributes":{"num_minor_ticks":5,"tickers":[{"type":"object","name":"AdaptiveTicker","id":"p1027","attributes":{"num_minor_ticks":0,"mantissas":[1,2,5],"max_interval":500.0}},{"type":"object","name":"AdaptiveTicker","id":"p1028","attributes":{"num_minor_ticks":0,"base":60,"mantissas":[1,2,5,10,15,20,30],"min_interval":1000.0,"max_interval":1800000.0}},{"type":"object","name":"AdaptiveTicker","id":"p1029","attributes":{"num_minor_ticks":0,"base":24,"mantissas":[1,2,4,6,8,12],"min_interval":3600000.0,"max_interval":43200000.0}},{"type":"object","name":"DaysTicker","id":"p1030","attributes":{"days":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]}},{"type":"object","name":"DaysTicker","id":"p1031","attributes":{"days":[1,4,7,10,13,16,19,22,25,28]}},{"type":"object","name":"DaysTicker","id":"p1032","attributes":{"days":[1,8,15,22]}},{"type":"object","name":"DaysTicker","id":"p1033","attributes":{"days":[1,15]}},{"type":"object","name":"MonthsTicker","id":"p1034","attributes":{"months":[0,1,2,3,4,5,6,7,8,9,10,11]}},{"type":"object","name":"MonthsTicker","id":"p1035","attributes":{"months":[0,2,4,6,8,10]}},{"type":"object","name":"MonthsTicker","id":"p1036","attributes":{"months":[0,4,8]}},{"type":"object","name":"MonthsTicker","id":"p1037","attributes":{"months":[0,6]}},{"type":"object","name":"YearsTicker","id":"p1038"}]}},"formatter":{"type":"object","name":"DatetimeTickFormatter","id":"p1025"},"axis_label":"time","major_label_policy":{"type":"object","name":"AllLabels","id":"p1039"}}}],"center":[{"type":"object","name":"Grid","id":"p1066","attributes":{"axis":{"id":"p1024"}}},{"type":"object","name":"Grid","id":"p1073","attributes":{"dimension":1,"axis":{"id":"p1067"},"grid_line_color":"black"}},{"type":"object","name":"Legend","id":"p1123","attributes":{"location":"top_left","click_policy":"hide","items":[{"type":"object","name":"LegendItem","id":"p1124","attributes":{"label":{"type":"value","value":"Mkt-RF"},"renderers":[{"id":"p1084"}]}},{"type":"object","name":"LegendItem","id":"p1173","attributes":{"label":{"type":"value","value":"SMB"},"renderers":[{"id":"p1131"}]}},{"type":"object","name":"LegendItem","id":"p1225","attributes":{"label":{"type":"value","value":"HML"},"renderers":[{"id":"p1180"}]}},{"type":"object","name":"LegendItem","id":"p1280","attributes":{"label":{"type":"value","value":"RF"},"renderers":[{"id":"p1232"}]}}]}}]}}]}};
+  const render_items = [{"docid":"611cfeed-9b91-42f7-88b9-f8b036286f77","roots":{"p1006":"ff7fd88a-b665-4e00-afa0-312ab704a484"},"root_ids":["p1006"]}];
+  root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="annualized-returns">
+<h1>Annualized returns<a class="headerlink" href="#annualized-returns" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">dateparse</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s1">&#39;%Y%m&#39;</span><span class="p">)</span> 
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/F-F_Research_Data_Factors.CSV&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span> <span class="s1">&#39;SMB&#39;</span><span class="p">,</span> <span class="s1">&#39;HML&#39;</span><span class="p">,</span> <span class="s1">&#39;RF&#39;</span><span class="p">],</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">882</span><span class="p">,</span>
+                <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_parser</span><span class="o">=</span><span class="n">dateparse</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_annual_return</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">annual_return</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">year</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">annual_return</span> <span class="o">=</span> <span class="n">annual_return</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">year</span><span class="p">[</span><span class="n">month</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="n">annual_return</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calculate_annual_return</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RF</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1999</th>
+      <td>14.87</td>
+      <td>10.76</td>
+      <td>-19.73</td>
+      <td>1.59</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>-16.70</td>
+      <td>-7.01</td>
+      <td>44.23</td>
+      <td>5.88</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>-14.70</td>
+      <td>19.83</td>
+      <td>15.05</td>
+      <td>3.82</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>-22.42</td>
+      <td>4.96</td>
+      <td>9.99</td>
+      <td>1.63</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>30.47</td>
+      <td>21.20</td>
+      <td>3.48</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>10.63</td>
+      <td>4.45</td>
+      <td>6.79</td>
+      <td>1.19</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>3.00</td>
+      <td>-1.78</td>
+      <td>8.83</td>
+      <td>2.98</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>10.16</td>
+      <td>0.31</td>
+      <td>10.50</td>
+      <td>4.81</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>0.98</td>
+      <td>-7.17</td>
+      <td>-16.06</td>
+      <td>4.67</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>-37.78</td>
+      <td>4.57</td>
+      <td>2.04</td>
+      <td>1.59</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>28.23</td>
+      <td>7.94</td>
+      <td>-4.62</td>
+      <td>0.09</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>17.35</td>
+      <td>13.53</td>
+      <td>-3.85</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0.44</td>
+      <td>-4.74</td>
+      <td>-8.20</td>
+      <td>0.04</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>16.25</td>
+      <td>-1.04</td>
+      <td>8.71</td>
+      <td>0.06</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>35.18</td>
+      <td>5.92</td>
+      <td>2.13</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>11.71</td>
+      <td>-6.80</td>
+      <td>-1.73</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>0.07</td>
+      <td>-4.01</td>
+      <td>-9.95</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>13.25</td>
+      <td>6.21</td>
+      <td>20.58</td>
+      <td>0.21</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>21.36</td>
+      <td>-4.24</td>
+      <td>-10.84</td>
+      <td>0.79</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>-6.85</td>
+      <td>-2.96</td>
+      <td>-10.59</td>
+      <td>1.81</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>27.71</td>
+      <td>-4.42</td>
+      <td>-8.09</td>
+      <td>2.15</td>
+    </tr>
+    <tr>
+      <th>2020</th>
+      <td>23.50</td>
+      <td>13.47</td>
+      <td>-30.35</td>
+      <td>0.46</td>
+    </tr>
+    <tr>
+      <th>2021</th>
+      <td>23.55</td>
+      <td>-4.15</td>
+      <td>22.15</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>2022</th>
+      <td>-21.31</td>
+      <td>-7.17</td>
+      <td>31.91</td>
+      <td>1.43</td>
+    </tr>
+    <tr>
+      <th>2023</th>
+      <td>7.53</td>
+      <td>-1.52</td>
+      <td>-20.16</td>
+      <td>1.77</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="last-10-years-cumulative-return-by-factor">
+<h1>Last 10 Years Cumulative return by factor<a class="headerlink" href="#last-10-years-cumulative-return-by-factor" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">last_10_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+
+<span class="k">for</span> <span class="n">factor</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span> <span class="s1">&#39;SMB&#39;</span><span class="p">,</span> <span class="s1">&#39;HML&#39;</span><span class="p">,</span> <span class="s1">&#39;RF&#39;</span><span class="p">]:</span>
+    <span class="n">total_returns</span> <span class="o">=</span> <span class="mi">1</span> 
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">last_10_df</span><span class="p">[</span><span class="n">factor</span><span class="p">]:</span>
+        <span class="n">total_returns</span> <span class="o">=</span> <span class="n">total_returns</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">year</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="n">total_returns</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">total_returns</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total cumulative return for factor </span><span class="si">{</span><span class="n">factor</span><span class="si">}</span><span class="s2"> for the last 10 years: </span><span class="si">{</span><span class="n">total_returns</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total cumulative return for factor Mkt-RF for the last 10 years: 135.98%
+Total cumulative return for factor SMB for the last 10 years: -16.09%
+Total cumulative return for factor HML for the last 10 years: -29.95%
+Total cumulative return for factor RF for the last 10 years: 8.96%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By https://github.com/zxcxyz<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
